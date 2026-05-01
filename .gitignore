@@ -1,0 +1,8 @@
+node_modules/
+bin/
+obj/
+build/
+
+.DS_Store
+**/.DS_Store
+
