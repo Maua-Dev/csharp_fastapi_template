@@ -16,6 +16,17 @@ public class TestItem
     // cuida disso.
     private const string FixedId = "88f0920c-0de0-4e0a-bb46-abdb3705579d";
 
+    // vale ressaltar a distinção entre Fact e Theory.
+    // Fact é um teste que não depende de nenhum parâmetro. Podemos utilizar isso para um único
+    // teste de passagem, como por exemplo a criação de uma entidade para testar apenas seu constructor
+    // e validar a criação da mesma.
+
+    // Theory é um teste que depende de um ou mais parâmetros. Podemos utilizar isso para testar diferentes
+    // cenários de entrada, como por exemplo a criação de uma entidade com diferentes valores para os atributos.
+    // Theory é mais poderoso e flexível, mas também é mais complexo de escrever e manter.
+
+
+    // Nesse caso, como estamos testando apenas o construtor, vamos utilizar Fact.
     [Fact]
     public void TestCorrectItemCreation()
     {
@@ -33,6 +44,8 @@ public class TestItem
         Assert.True(item.AdminPermission);
     }
 
+    // Nesse caso, como estamos testando diferentes cenários de entrada, vamos utilizar Theory.
+    // InlineData é uma forma de passar os parâmetros para o teste.
     [Theory]
     [InlineData("")] // id vazio
     [InlineData("not-a-guid")] // formato que não é UUID

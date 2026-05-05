@@ -1,7 +1,6 @@
 namespace csharp_fastapi_template.repo;
 
 using csharp_fastapi_template.entities;
-using csharp_fastapi_template.enums;
 
 public interface IItemRepository {
 
