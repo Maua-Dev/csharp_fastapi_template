@@ -12,5 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer.Hosting" Version="1.*" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.*" />
   </ItemGroup>
 </Project>
