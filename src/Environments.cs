@@ -1,6 +1,7 @@
 namespace csharp_fastapi_template;
 
 using Amazon.DynamoDBv2;
+using Amazon.Runtime;
 using csharp_fastapi_template.errors;
 using csharp_fastapi_template.repo;
 using csharp_fastapi_template.repo.interfaces;
@@ -54,7 +55,24 @@ public static class Environments
                 throw new EnvironmentNotFoundException("DYNAMO_TABLE_NAME");
             }
 
-            services.AddSingleton<IAmazonDynamoDB, AmazonDynamoDBClient>();
+            var endpointUrl = configuration["DYNAMO_ENDPOINT_URL"];
+            var awsRegion = configuration["AWS_REGION"] ?? "us-east-1";
+
+            services.AddSingleton<IAmazonDynamoDB>(_ =>
+            {
+                if (!string.IsNullOrWhiteSpace(endpointUrl))
+                {
+                    var config = new AmazonDynamoDBConfig
+                    {
+                        ServiceURL = endpointUrl,
+                        AuthenticationRegion = awsRegion
+                    };
+                    var credentials = new BasicAWSCredentials("dummy", "dummy");
+                    return new AmazonDynamoDBClient(credentials, config);
+                }
+
+                return new AmazonDynamoDBClient();
+            });
             services.AddSingleton<IItemRepository>(sp =>
                 new ItemRepositoryDynamo(
                     sp.GetRequiredService<IAmazonDynamoDB>(),
