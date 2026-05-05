@@ -3,15 +3,14 @@ using csharp_fastapi_template.adapters.contracts;
 using csharp_fastapi_template.entities;
 using csharp_fastapi_template.enums;
 using csharp_fastapi_template.errors;
-using csharp_fastapi_template.repo;
+using csharp_fastapi_template.repo.interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// injeta repositório mock como singleton em memória
-builder.Services.AddSingleton<IItemRepository, ItemRepositoryMock>();
+csharp_fastapi_template.Environments.ConfigureItemRepository(builder.Services, builder.Configuration);
 
 // habilita execução como Lambda (API Gateway HTTP API)
 builder.Services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);

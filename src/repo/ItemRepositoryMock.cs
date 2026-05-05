@@ -3,6 +3,7 @@ namespace csharp_fastapi_template.repo;
 using csharp_fastapi_template.entities;
 using csharp_fastapi_template.enums;
 using csharp_fastapi_template.errors;
+using csharp_fastapi_template.repo.interfaces;
 
 public class ItemRepositoryMock : IItemRepository
 {

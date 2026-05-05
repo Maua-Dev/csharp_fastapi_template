@@ -1,4 +1,4 @@
-namespace csharp_fastapi_template.repo;
+namespace csharp_fastapi_template.repo.interfaces;
 
 using csharp_fastapi_template.entities;
 
