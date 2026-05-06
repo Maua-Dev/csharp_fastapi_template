@@ -34,7 +34,7 @@ Ainda na raiz do projeto:
 bash iac/local/dynamo/load_items.sh
 ```
 
-> O script cria a tabela (se necessário) e carrega os mesmos itens do repositório mock.
+> O script cria a tabela se ela ainda nao existir e carrega os mesmos itens do repositório mock.
 
 ## 4) Rodar os testes do repo Dynamo
 
