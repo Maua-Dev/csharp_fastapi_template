@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [dev, homolog, prod]
+
+jobs:
+  dotnet-ci:
+    uses: Maua-Dev/ci_workflows_reusable/.github/workflows/dotnet_10_ci.yml@V1.3
+    with:
+      project-path: "./csharp_fastapi_template.sln"
+      dotnet-version: "10.0.x"
+      test-command: "dotnet test ./csharp_fastapi_template.sln --configuration Release --no-build --filter \"Category!=DynamoIntegration\"" # opcional
